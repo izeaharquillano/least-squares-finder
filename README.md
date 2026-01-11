@@ -14,4 +14,4 @@ Function requirements:
 Function requirements:
 1. Input: matrix (Augmented matrix)
 2. Output: A (matrix), b (vector)
-3. Location: [solver.py](solver.py)
+3. Location: [utils.py](utils.py)
