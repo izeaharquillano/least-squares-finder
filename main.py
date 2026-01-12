@@ -22,12 +22,24 @@ class ToolTip:
             return
         x = self.widget.winfo_rootx() + 20
         y = self.widget.winfo_rooty() + 20
+
         self.tip_window = tw = tk.Toplevel(self.widget)
+
         tw.wm_overrideredirect(True)
+
+        try:
+            tw.tk.call("::tk::unsupported::MacWindowStyle", "style", tw._w, "help", "none")
+        except tk.TclError:
+            pass
+
+        tw.configure(bg="white", padx=1, pady=1)
         tw.wm_geometry(f"+{x}+{y}")
+
         label = tk.Label(tw, text=self.text, justify='left',
-                         background="lightyellow", relief='solid', borderwidth=1,
-                         font=("Arial", 10))
+                         background="white", foreground="#2d373d",
+                         relief='flat', highlightthickness=0,
+                         padx=8, pady=4,
+                         font=("Arial", 11, "bold"))
         label.pack()
 
     def hide_tip(self, event=None):
