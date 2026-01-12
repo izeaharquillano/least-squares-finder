@@ -1,5 +1,6 @@
 import numpy as np
 import tkinter as tk
+import sys
 from tkinter import messagebox
 from tkmacosx import Button
 
@@ -79,8 +80,16 @@ class LeastSquaresApp:
         self.matrix_frame = tk.Frame(main_frame, bg="#37444c")
         self.matrix_frame.grid(row=5, column=0, columnspan=2, pady=10, sticky="n")
 
-        Button(main_frame, text="Confirm Size", command=self.generate_matrix_ui, 
-                    bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
+        if sys.platform == "darwin":
+            Button(main_frame, borderless=1, text="Confirm Size", command=self.generate_matrix_ui, 
+                        bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
+            self.solve_button = Button(main_frame, text="Solve", command=self.solve_ls,
+                                            bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
+        else:
+            tk.Button(main_frame, text="Confirm Size", command=self.generate_matrix_ui, 
+                        bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
+            self.solve_button = tk.Button(main_frame, text="Solve", command=self.solve_ls,
+                                            bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
 
         tk.Frame(main_frame, height=2, bg="white").grid(row=4, column=0, columnspan=2, sticky="we", pady=5)
         tk.Frame(main_frame, height=2, bg="white").grid(row=6, column=0, columnspan=2, sticky="we", pady=5)
@@ -99,8 +108,6 @@ class LeastSquaresApp:
         self.error_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Courier", 11))
         self.error_label.grid(row=13, column=0, columnspan=2, pady=5)
 
-        self.solve_button = Button(main_frame, text="Solve", command=self.solve_ls,
-                                   bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
         self.solve_button.grid(row=14, column=0, columnspan=2, pady=20)
 
     def refresh_grid(self):
