@@ -71,7 +71,7 @@ matrix_frame.grid(row=4, column=0, columnspan=20, pady=10, sticky="w")
 tk.Label(matrix_frame, text="Augmented Matrix Input:", bg="#37444c", fg="white", font=("Arial", 11, "bold"))\
     .grid(row=0, column=0, columnspan=20, pady=5)
 
-# Generate Matrix Layout button (stays visible)
+# Generate Matrix Layout button
 generate_button = tk.Button(matrix_frame, text="Generate Matrix Layout", bg="#2d373d", fg="white", font=("Arial", 11, "bold"))
 generate_button.grid(row=1, column=0, columnspan=20, pady=10)
 
@@ -96,7 +96,7 @@ def generate_matrix_ui():
         messagebox.showerror("Error", "Please enter valid positive integers for m and n.")
         return
 
-    # Curly brace visual: always ⎧ at top, ⎩ at bottom, | in between
+    # Curly brace visual
     if m == 1:
         brace_text = "⎧\n⎩"
     elif m == 2:
@@ -130,7 +130,7 @@ def generate_matrix_ui():
         entries_matrix.append(row_entries)
 
     root.update_idletasks()
-    root.geometry("")  # dynamic resize
+    root.geometry("")
 
 generate_button.config(command=generate_matrix_ui)
 
