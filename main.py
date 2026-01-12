@@ -83,7 +83,7 @@ class LeastSquaresApp:
         if sys.platform == "darwin":
             Button(main_frame, borderless=1, text="Confirm Size", command=self.generate_matrix_ui, 
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
-            self.solve_button = Button(main_frame, text="Solve", command=self.solve_ls,
+            self.solve_button = Button(main_frame, borderless=1, text="Solve", command=self.solve_ls,
                                             bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
         else:
             tk.Button(main_frame, text="Confirm Size", command=self.generate_matrix_ui, 
