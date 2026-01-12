@@ -46,8 +46,8 @@ class LeastSquaresApp:
         self.root.configure(bg="#37444c")
         self.root.resizable(True, True)
 
-        self.icon = tk.PhotoImage(file="assets/icon.png")
-        self.root.iconphoto(False, self.icon)
+        # self.icon = tk.PhotoImage(file="assets/icon.png")
+        # self.root.iconphoto(False, self.icon)
 
         main_frame = tk.Frame(root, bg="#37444c")
         main_frame.pack(padx=50, pady=20, fill="both", expand=True)
