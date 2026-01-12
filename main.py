@@ -75,7 +75,7 @@ class LeastSquaresApp:
                        activebackground="#37444c", activeforeground="white",
                        command=self.refresh_grid).pack(side="left", padx=10)
 
-        tk.Radiobutton(mode_frame, text="Plain Matrix Mode", variable=self.mode_var, 
+        tk.Radiobutton(mode_frame, text="Augmented Matrix Mode", variable=self.mode_var, 
                        value="plain", bg="#37444c", fg="white", selectcolor="#2d373d",
                        activebackground="#37444c", activeforeground="white",
                        command=self.refresh_grid).pack(side="left", padx=10)
