@@ -129,11 +129,21 @@ class LeastSquaresApp:
             n = int(self.entry_n.get())
             if m <= 0 or n <= 0:
                 raise ValueError
-        except:
+        except ValueError:
             messagebox.showerror("Error", "Please enter valid positive integers for m and n.")
             return
 
-        header_text = "Augmented Matrix Input:" if mode == "linear" else "Matrix [A] | Vector [b]"
+        if m > 5 or n > 5:
+            confirm = messagebox.askyesno("Confirm Size", 
+                                          f"The matrix size ({m}x{n}) is large. Do you want to proceed?")
+            if not confirm:
+                self.entry_m.delete(0, tk.END)
+                self.entry_n.delete(0, tk.END)
+                for widget in self.matrix_frame.winfo_children():
+                    widget.destroy()
+                return
+
+        header_text = "Linear System Input:" if mode == "linear" else "Augmented Matrix Input:"
         tk.Label(self.matrix_frame, text=header_text, bg="#37444c", fg="white", font=("Arial", 11, "bold"))\
                 .grid(row=0, column=0, columnspan=50, pady=5)
 
