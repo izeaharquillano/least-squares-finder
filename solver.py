@@ -2,11 +2,9 @@ import numpy as np
 
 
 def get_ls_xhat(A, b):
-    AT = A.T
-    ATA = AT @ A
-    ATb = AT @ b
-    x_hat = np.linalg.solve(ATA, ATb)
-    return x_hat
+    A = np.array(A, dtype=float)
+    b = np.array(b, dtype=float)
+    return np.linalg.pinv(A.T @ A) @ A.T @ b
 
 
 def get_ls_error(A, b, x_hat):
