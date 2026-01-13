@@ -108,13 +108,13 @@ class LeastSquaresApp:
         # tk.Frame(main_frame, height=2, bg="white").grid(row=6, column=0, columnspan=2, sticky="we", pady=5)
 
         # tk.Label(main_frame, text="Display Matrix:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=7, column=0, columnspan=2, pady=(5,0))
-        # self.matrix_display_label = tk.Label(main_frame, text="", bg="#37444c", fg="white", font=("Courier", 11), justify="center")
+        # self.matrix_display_label = tk.Label(main_frame, text="", bg="#37444c", fg="white", font=("Arial", 11), justify="center")
         # self.matrix_display_label.grid(row=8, column=0, columnspan=2, pady=5)
 
         tk.Frame(main_frame, height=2, bg="white").grid(row=9, column=0, columnspan=2, sticky="we", pady=5)
 
         tk.Label(main_frame, text="Least Squares Solution Vector:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=10, column=0, columnspan=2, pady=(5,0))
-        self.solution_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 12, "bold"))
+        self.solution_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 12))
         self.solution_label.grid(row=11, column=0, columnspan=2, pady=5)
 
         tk.Label(main_frame, text="Least Squares Error:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=12, column=0, columnspan=2, pady=(5,0))
