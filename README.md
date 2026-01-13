@@ -9,7 +9,7 @@ This is the fastest way to get the application running without any technical set
 #### macOS
 
 1. **Download & Open**
-   Download the `.dmg` file from the provided drive or the GitHub Releases section, then double-click to open it.
+   Download the `.dmg` file from the GitHub Releases section, then double-click to open it.
 2. **Install**
    When the window appears, drag the app icon into the **Applications** folder.
 3. **Launch**
@@ -141,7 +141,7 @@ Click the **Solve** button at the bottom of the window.
 After clicking **Solve**, the application displays:
 
 * **Least Squares Solution Vector**
-  The calculated ( \hat{x} ) values minimizing the sum of squared residuals.
+  The calculated x hat values minimizing the sum of squared residuals.
 * **Least Squares Error**
   The residual norm. An error of `0.000000` indicates a consistent system with an exact solution.
 
