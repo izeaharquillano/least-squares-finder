@@ -113,12 +113,12 @@ class LeastSquaresApp:
 
         tk.Frame(main_frame, height=2, bg="white").grid(row=9, column=0, columnspan=2, sticky="we", pady=5)
 
-        tk.Label(main_frame, text="Least Squares Solution Vector:", bg="#37444c", fg="white", font=("Courier", 11, "bold")).grid(row=10, column=0, columnspan=2, pady=(5,0))
-        self.solution_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Courier New", 12, "bold"))
+        tk.Label(main_frame, text="Least Squares Solution Vector:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=10, column=0, columnspan=2, pady=(5,0))
+        self.solution_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 12, "bold"))
         self.solution_label.grid(row=11, column=0, columnspan=2, pady=5)
 
-        tk.Label(main_frame, text="Least Squares Error:", bg="#37444c", fg="white", font=("Courier", 11, "bold")).grid(row=12, column=0, columnspan=2, pady=(5,0))
-        self.error_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Courier", 11))
+        tk.Label(main_frame, text="Least Squares Error:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=12, column=0, columnspan=2, pady=(5,0))
+        self.error_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 11))
         self.error_label.grid(row=13, column=0, columnspan=2, pady=5)
 
         self.solve_button.grid(row=14, column=0, columnspan=2, pady=20)
