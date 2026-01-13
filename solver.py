@@ -7,11 +7,10 @@ def get_ls_xhat(A, b):
 
     return np.linalg.pinv(A.T @ A) @ A.T @ b
 
-def get_ls_error(A, b):
+def get_ls_error(A, b, x_hat):
     A = np.array(A, dtype=float)
     b = np.array(b, dtype=float)
-    
-    x_hat = get_ls_xhat(A, b)
+    x_hat = np.array(x_hat, dtype=float)
     
     prediction = A @ x_hat
 
