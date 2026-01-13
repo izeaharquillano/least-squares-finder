@@ -1,6 +1,8 @@
 import numpy as np
 import tkinter as tk
 import sys
+import platform
+import ctypes
 from tkinter import messagebox
 from tkmacosx import Button
 
@@ -212,6 +214,14 @@ class LeastSquaresApp:
 
 
 if __name__ == "__main__":
+    if platform.system() == "Windows":
+        try:
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:
+            try:
+                ctypes.windll.user32.SetProcessDPIAware()
+            except Exception:
+                pass
     root = tk.Tk()
     app = LeastSquaresApp(root)
     root.mainloop()
