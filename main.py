@@ -65,7 +65,7 @@ class LeastSquaresApp:
 
         self.mode_var = tk.StringVar(value="linear")
         mode_frame = tk.Frame(main_frame, bg="#37444c")
-        mode_frame.grid(row=0, column=0, columnspan=2, pady=10)
+        mode_frame.grid(row=0, column=0, columnspan=2, pady=0)
 
         tk.Label(main_frame, text="Number of Equations (m):", bg="#37444c", fg="white", font=("Arial", 11))\
                 .grid(row=1, column=0, sticky="e", pady=2, padx=5)
@@ -109,7 +109,7 @@ class LeastSquaresApp:
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
             self.solve_button = Button(self.solve_button_frame, borderless=1, text="Solve", command=self.solve_ls,
                                         bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
-            self.clear_button = Button(main_frame, text="Clear",
+            self.clear_button = Button(main_frame, borderless=1, text="Clear",
                                            command=self.clear_matrix, bg="#2d373d", fg="white",
                                            font=("Arial", 12, "bold"))
         else:
@@ -219,8 +219,6 @@ class LeastSquaresApp:
             self.error_label.config(text=f"{float(ls_error):.6f}")
             # self.matrix_display_label.config(text=np.array2string(aug_matrix, precision=2, separator=', '))
 
-        except np.linalg.LinAlgError:
-            messagebox.showerror("Math Error", "The matrix A^T A is singular. The system cannot be solved this way.")
         except ValueError:
             messagebox.showerror("Input Error", "Please ensure all matrix entries are valid numbers.")
         except Exception as e:
