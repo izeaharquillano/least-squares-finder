@@ -67,21 +67,12 @@ class LeastSquaresApp:
         mode_frame = tk.Frame(main_frame, bg="#37444c")
         mode_frame.grid(row=0, column=0, columnspan=2, pady=10)
 
-        tk.Radiobutton(mode_frame, text="Linear System Mode", variable=self.mode_var,
-                       value="linear", bg="#37444c", fg="white", selectcolor="#2d373d",
-                       activebackground="#37444c", activeforeground="white",
-                       command=self.refresh_grid).pack(side="left", padx=10)
-
-        tk.Radiobutton(mode_frame, text="Augmented Matrix Mode", variable=self.mode_var,
-                       value="plain", bg="#37444c", fg="white", selectcolor="#2d373d",
-                       activebackground="#37444c", activeforeground="white",
-                       command=self.refresh_grid).pack(side="left", padx=10)
-
         tk.Label(main_frame, text="Number of Equations (m):", bg="#37444c", fg="white", font=("Arial", 11))\
                 .grid(row=1, column=0, sticky="e", pady=2, padx=5)
         self.entry_m = tk.Entry(main_frame, width=5, bg="#2d373d", fg="white",
                                 insertbackground="white", font=("Arial", 11))
         self.entry_m.grid(row=1, column=1, sticky="w", pady=2)
+        self.entry_m.insert(0, "3")
         ToolTip(self.entry_m, "m = # of equations / rows")
 
         tk.Label(main_frame, text="Number of Unknowns (n):", bg="#37444c", fg="white", font=("Arial", 11))\
@@ -89,29 +80,40 @@ class LeastSquaresApp:
         self.entry_n = tk.Entry(main_frame, width=5, bg="#2d373d", fg="white",
                                 insertbackground="white", font=("Arial", 11))
         self.entry_n.grid(row=2, column=1, sticky="w", pady=2)
+        self.entry_n.insert(0, "3")
         ToolTip(self.entry_n, "n = # of unknowns / columns")
 
+        tk.Frame(main_frame, height=2, bg="white").grid(row=4, column=0, columnspan=2, sticky="we", pady=5)
+
         self.matrix_frame = tk.Frame(main_frame, bg="#37444c")
-        self.matrix_frame.grid(row=5, column=0, columnspan=2, pady=10, sticky="n")
+        self.matrix_frame.grid(row=6, column=0, columnspan=2, pady=10, sticky="n")
+
+        self.radio_frame = tk.Frame(main_frame, bg="#37444c")
+        self.radio_frame.grid(row=5, column=0, columnspan=2, pady=10, sticky="n")
+
+        tk.Radiobutton(self.radio_frame, text="Linear System Mode", variable=self.mode_var,
+                       value="linear", bg="#37444c", fg="white", selectcolor="#2d373d",
+                       activebackground="#37444c", activeforeground="white",
+                       command=self.refresh_grid).pack(side="left", padx=10)
+
+        tk.Radiobutton(self.radio_frame, text="Augmented Matrix Mode", variable=self.mode_var,
+                       value="plain", bg="#37444c", fg="white", selectcolor="#2d373d",
+                       activebackground="#37444c", activeforeground="white",
+                       command=self.refresh_grid).pack(side="left", padx=10)
+
+        self.solve_button_frame = tk.Frame(main_frame, bg="#37444c")
+        self.solve_button_frame.grid(row=7, column=0, columnspan=2, sticky="n")
 
         if sys.platform == "darwin":
             Button(main_frame, borderless=1, text="Confirm Size", command=self.generate_matrix_ui,
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
-            self.solve_button = Button(main_frame, borderless=1, text="Solve", command=self.solve_ls,
+            self.solve_button = Button(self.solve_button_frame, borderless=1, text="Solve", command=self.solve_ls,
                                         bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
         else:
             tk.Button(main_frame, text="Confirm Size", command=self.generate_matrix_ui,
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
-            self.solve_button = tk.Button(main_frame, text="Solve", command=self.solve_ls,
+            self.solve_button = tk.Button(self.solve_button_frame, text="Solve", command=self.solve_ls,
                                         bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
-
-        tk.Frame(main_frame, height=2, bg="white").grid(row=4, column=0, columnspan=2, sticky="we", pady=5)
-
-        # tk.Frame(main_frame, height=2, bg="white").grid(row=6, column=0, columnspan=2, sticky="we", pady=5)
-
-        # tk.Label(main_frame, text="Display Matrix:", bg="#37444c", fg="white", font=("Arial", 11, "bold")).grid(row=7, column=0, columnspan=2, pady=(5,0))
-        # self.matrix_display_label = tk.Label(main_frame, text="", bg="#37444c", fg="white", font=("Arial", 11), justify="center")
-        # self.matrix_display_label.grid(row=8, column=0, columnspan=2, pady=5)
 
         tk.Frame(main_frame, height=2, bg="white").grid(row=9, column=0, columnspan=2, sticky="we", pady=5)
 
@@ -124,6 +126,8 @@ class LeastSquaresApp:
         self.error_label.grid(row=13, column=0, columnspan=2, pady=5)
 
         self.solve_button.grid(row=14, column=0, columnspan=2, pady=20)
+
+        self.generate_matrix_ui()
 
     def refresh_grid(self):
         if self.entry_m.get() and self.entry_n.get():
