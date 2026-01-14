@@ -133,7 +133,7 @@ class LeastSquaresApp:
         self.error_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 11))
         self.error_label.grid(row=13, column=0, columnspan=2, pady=5)
 
-        self.clear_button.grid(row=14, column=0, columnspan=2, pady=0)
+        self.clear_button.grid(row=14, column=0, columnspan=2, pady=20)
 
         self.generate_matrix_ui()
 
