@@ -109,11 +109,19 @@ class LeastSquaresApp:
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
             self.solve_button = Button(self.solve_button_frame, borderless=1, text="Solve", command=self.solve_ls,
                                         bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
+            self.clear_button = Button(main_frame, text="Clear",
+                                           command=self.clear_matrix, bg="#2d373d", fg="white",
+                                           font=("Arial", 12, "bold"))
         else:
             tk.Button(main_frame, text="Confirm Size", command=self.generate_matrix_ui,
                         bg="#2d373d", fg="white", font=("Arial", 11, "bold")).grid(row=3, column=0, columnspan=2, pady=10)
             self.solve_button = tk.Button(self.solve_button_frame, text="Solve", command=self.solve_ls,
                                         bg="#2d373d", fg="white", font=("Arial", 12, "bold"))
+            self.clear_button = tk.Button(main_frame, text="Clear",
+                                           command=self.clear_matrix, bg="#2d373d", fg="white",
+                                           font=("Arial", 12, "bold"))
+
+        self.solve_button.grid(row=0, column=0, columnspan=2, pady=10)
 
         tk.Frame(main_frame, height=2, bg="white").grid(row=9, column=0, columnspan=2, sticky="we", pady=5)
 
@@ -125,7 +133,7 @@ class LeastSquaresApp:
         self.error_label = tk.Label(main_frame, text="", justify="center", bg="#37444c", fg="white", font=("Arial", 11))
         self.error_label.grid(row=13, column=0, columnspan=2, pady=5)
 
-        self.solve_button.grid(row=14, column=0, columnspan=2, pady=20)
+        self.clear_button.grid(row=14, column=0, columnspan=2, pady=20)
 
         self.generate_matrix_ui()
 
@@ -211,10 +219,20 @@ class LeastSquaresApp:
             self.error_label.config(text=f"{float(ls_error):.6f}")
             # self.matrix_display_label.config(text=np.array2string(aug_matrix, precision=2, separator=', '))
 
+        except np.linalg.LinAlgError:
+            messagebox.showerror("Math Error", "The matrix A^T A is singular. The system cannot be solved this way.")
         except ValueError:
             messagebox.showerror("Input Error", "Please ensure all matrix entries are valid numbers.")
         except Exception as e:
             messagebox.showerror("Solver Error", f"An error occurred: {e}")
+
+    def clear_matrix(self):
+        for row in self.entries_matrix:
+            for entry in row:
+                entry.delete(0, tk.END)
+
+        self.solution_label.config(text="")
+        self.error_label.config(text="")
 
 
 if __name__ == "__main__":
